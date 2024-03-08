@@ -1,0 +1,10 @@
+.flex-full{
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.main-padd{
+    padding: 0 2rem;
+}
+
+
