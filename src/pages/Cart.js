@@ -77,10 +77,10 @@ const Cart = () => {
 }
 
 const CartSection = styled.section`
-  margin: 50px 0 150px 0;
+  margin: 0 0 70px 0;
 
   .img-container{
-    height: 60vh;
+    height: 70vh;
     padding: 0;
     margin-bottom: 70px;
 
@@ -94,7 +94,9 @@ const CartSection = styled.section`
 
   .no-product{
     text-align: center;
-    padding-top: 120px;
+    
+    font-size: 1.7rem;
+    color: rgb(180,0,0);
   }
 `
 const Container = styled.div`

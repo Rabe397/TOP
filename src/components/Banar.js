@@ -3,33 +3,19 @@ import styled from 'styled-components';
 import {FaArrowLeft , FaArrowRight} from 'react-icons/fa';
 
 const Banar = () => {
-    const [currSlide , setCurrSlide] = useState(0)
-    const prevSlide = ()=>{
-      setCurrSlide(currSlide === 0 ? 2 : currSlide - 1)
-    }
-
-    const nextSlide = ()=>{
-      setCurrSlide(currSlide === 2 ? 0 : currSlide + 1)
-    }
-    const images = [
-        "/images/background/blog1.webp",
-        "/images/background/blog2.webp",
-        "/images/background/background1.webp",
-    ]
-
+ 
   return (
     <BanarSection>
       <Container>
         <div className="images-container flex-full">
-          <img src={images[currSlide]}  alt='banar-1' />    
-        </div>
-        <div className='arrows-container flex-full'>
-          <div className='left' onClick={prevSlide}>
-            <FaArrowLeft />
-          </div>
-          <div className='right' onClick={nextSlide}>
-            <FaArrowRight />
-          </div>
+          <img src="/images/background/background1.webp"  alt='banar-1' />
+          <div className="hero">
+            <h2> Best Place To Buy Laptop </h2>
+            <div className="btns">
+              <button className="btn btn-1"> Learn More </button>
+              <button className="btn btn-2"> Shop Now </button>
+            </div>
+          </div>    
         </div>
       </Container>
     </BanarSection>
@@ -37,45 +23,55 @@ const Banar = () => {
 }
 
 const BanarSection = styled.section`
-  margin-top: 50px;
+  
 `
 const Container = styled.div`
   .images-container{
     min-width: 100vw;
-    height: calc(100vh - 110px);
+    height: 100vh;
     overflow-x : hidden;
-    
+    position: relative;
+
+    &:before{
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(0,0,0,0.7);
+    }
     img{
       min-width: 100vw;
       height: 100%;
       overflow-x : hidden;
     }
-  }
+    
+    .hero{
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%,-50%);
+      text-align: center;
+      color: white;
 
-  .arrows-container.flex-full{
-    justify-content: center;
-    position: absolute;
-    bottom: 100px;
-    left: 50%;
-    transform : translatex(-50%);
-    div{
-      padding: 10px;
-      border: 1px solid black;
-      margin: 0 5px;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
+      .btns{
+        margin-top: 20px;
 
-      @media(max-width: 768px){
-        padding: 1.5px;
-      }
-      &:hover{
-        background-color: black;
-        color: white;
-        transition: 0.3s;
+        .btn{
+          padding: 10px 15px;
+          border-radius: 8px;
+        }
+
+        .btn-2{
+          background-color: rgb(0, 50,100);
+          color: white;
+          margin-left: 5px;
+        }
       }
     }
   }
+
 `
 
 export default Banar;

@@ -18,11 +18,12 @@ const FavBox = ({item}) => {
       </div>
       <div className='product-info flex-full'>
         <p> {item.name} </p>
-        <p className='price'> {item.price} </p>
+        <p className='price'> ${item.price} </p>
       </div>
       <p className='cate'> {item.brand} </p>
       <div className="btns flex-full">
-        <StyleHeart onClick={()=> dispatch(removeFromFav(item.id)) & toast.error(`${item.name} is removed from Fav`)}></StyleHeart>
+        <StyleHeart></StyleHeart>
+        <button className="remove-btn" onClick={()=> dispatch(removeFromFav(item.id)) & toast.error(`${item.name} is removed from Fav`)}> Remove </button>
       </div>
       
       <ToastContainer
@@ -64,6 +65,7 @@ const FavBoxContainer = styled.div`
     img{
       display: block;
       max-width: 100%;
+      width: 100%;
       height: 100%;
       margin: auto;
     }
@@ -98,11 +100,11 @@ const FavBoxContainer = styled.div`
     }
   }
 
-  .add-to-cart{
+  .remove-btn{
     padding: 5px 10px;
     border-radius: 10px;
     color: white;
-    background-color: black;
+    background-color: rgb(190,0,0);
 
     @media(max-width: 250px){
       padding: 3px 6px;

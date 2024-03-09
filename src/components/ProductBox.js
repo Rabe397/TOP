@@ -4,7 +4,7 @@ import {useNavigate} from 'react-router-dom';
 import { useDispatch  , useSelector} from 'react-redux';
 import { addToCart, addToFav , checkFav} from '../redux/TopSlice';
 import { ToastContainer, toast } from 'react-toastify';
-import {FaHeart} from 'react-icons/fa';
+import {FaHeart ,FaShoppingCart } from 'react-icons/fa';
 
 const ProductBox = ({product}) => {
   const dispatch = useDispatch();
@@ -40,14 +40,14 @@ const ProductBox = ({product}) => {
       </div>
       <p className='cate'> {product.brand} </p>
       <div className="btns flex-full">
-        <button className='add-to-cart' onClick={()=> userInfo? dispatch(addToCart({
-      id: product.id,
-      name: product.name,
-      image: product.image,
-      price: product.price,
-      quantity: 1,
-      })) : navigate("/register")}> Add to cart 
-        </button>
+        <FaShoppingCart  onClick={()=> userInfo? dispatch(addToCart({
+          id: product.id,
+          name: product.name,
+          image: product.image,
+          price: product.price,
+          quantity: 1,
+          })) & toast.success(`${product.name} is added to Cart`) : navigate("/register")}
+        />
         <StyleHeart addedToFav={addedToFav ? true : false} onClick={()=> userInfo? dispatch(addToFav({
           id: product.id,
           name: product.name,
@@ -55,20 +55,21 @@ const ProductBox = ({product}) => {
           price: product.price,
           quantity: product.quantity,
         })) & toast.success(`${product.name} is added to Fav`) : navigate("/register")}></StyleHeart>
+        
       </div>
-      
       <ToastContainer
-        position="top-left"
-        autoClose={2000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="dark"
-      />
+      position="top-left"
+      autoClose={2000}
+      hideProgressBar={false}
+      newestOnTop={false}
+      closeOnClick
+      rtl={false}
+      pauseOnFocusLoss
+      draggable
+      pauseOnHover
+      theme="dark"
+    />
+      
     </ProductBoxContainer>
   )
 }
@@ -96,6 +97,7 @@ const ProductBoxContainer = styled.div`
     img{
       display: block;
       max-width: 100%;
+      width: 100%;
       height: 100%;
       margin: auto;
     }

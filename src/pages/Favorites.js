@@ -71,8 +71,13 @@ const EmptyFav = styled.div`
   margin: 40px 0;
   font-size: 1.2rem;
 
+  p{
+    color: rgb(180,0,0);
+  }
+
   a{
     margin-top: 20px;
+    text-decoration: underline;
   }
 `
 export default Favorites;

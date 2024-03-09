@@ -78,9 +78,11 @@ const SignUp = () => {
 }
 
 const SignUpSection = styled.section`
-  margin: 252px 0 171px 0;
+  min-height: 70vh;
   display : flex;
+  align-items: center;
   justify-content: center;
+  margin: 95px 0 50px 0;
 `
 const Container = styled.div`
   width: 50%;
@@ -109,6 +111,10 @@ const Container = styled.div`
     width: 100%;
     padding: 10px;
     margin: 8px 0;
+  }
+
+  @media(max-width: 425px){
+    width: 80%;
   }
 `
 

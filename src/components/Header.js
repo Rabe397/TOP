@@ -26,44 +26,44 @@ const Header = ()=>{
       })
     }
     return(
-        <TopHeader className='main-padd flex-full'>
-                <Link to='/' style={{"display" : "block"}}> 
-                  <h2 className='brand'> TOP </h2>
-                </Link>
-                <nav className={mob ? "nav-mob flex-full" : "nav flex-full"}>
-                  
-                  <Link to='/'> Home </Link>
-                  <Link to='/fav'> Favorites </Link>
-                  <Link to=''> Shop </Link>
-                  <Link to=''> Element </Link>
-                  <Link to=''> Blog </Link>
-                </nav>
-                <div className='cart'>
-                  <Link to='/cart'>
-                    <FaShoppingCart style={{"width" : "30px" , "height" : "30px"}}/>
-                    <span> {productData && productData.length} </span>
-                  </Link>
-                </div>
-                {
-                  userInfo && (
-                    <>
-                      <p className='user-name'> {userInfo.email} </p>
-                      <Link onClick={hundleSignOut} className='log-out'> Logout </Link>
-                    </>)
-                  
+        <TopHeader className='main-padd '>
+          <div className="container flex-full">
+            <Link to='/' style={{"display" : "block"}}> 
+              <h2 className='brand'> TOP </h2>
+            </Link>
+            <nav className={mob ? "nav-mob flex-full" : "nav flex-full"}>
+              <Link to='/'> Home </Link>
+              <Link to='/fav'> Favorites </Link>
+              <Link to='/cart'> Orders </Link>
+            </nav>
+            <div className='cart'>
+              <Link to='/cart'>
+                <ShoppingCartIcon></ShoppingCartIcon>
+                <span> {productData && productData.length} </span>
+              </Link>
+            </div>
+              {
+               userInfo && (
+                <div className="flex-full email-logout">
+                  <p className='user-name'> {userInfo.email} </p>
+                  <Link onClick={hundleSignOut} className='log-out'> Logout </Link>
+                </div>)
+              
+              }
+              {
+               !userInfo &&(
+               location.pathname ==="/register" && !userInfo ? 
+                 (<Link to='/login'> Login </Link>)
+               : 
+                 (<Link to='/register'> Sign Up </Link>))
                 }
-                {
-                  !userInfo &&(
-                  location.pathname ==="/register" && !userInfo ? 
-                     (<Link to='/login'> Login </Link>)
-                  : 
-                     (<Link to='/register'> Sign Up </Link>))
-                }
-                   
-                  
-                <MobMode onClick={()=> isMob(!mob)}>
-                  { mob ? <FaTimes className='fa-bars'/> : <FaBars /> }
-                </MobMode>  
+               
+              
+              <MobMode onClick={()=> isMob(!mob)}>
+              { mob ? <FaTimes className='fa-bars'/> : <FaBars /> }
+                </MobMode> 
+          </div>
+                 
           <ToastContainer
           position="top-left"
           autoClose={2000}
@@ -86,13 +86,13 @@ const TopHeader = styled.header`
   width: 100%;
   border-bottom: 1px solid black;
   background-color: white;
-  z-index: 10;
+  z-index: 100;
   padding-top: 7px;
   padding-bottom: 7px;
   
   .nav{
     gap: 10px;
-    width: 40%;
+    width: 30%;
 
     @media(max-width:768px){
        display: none;
@@ -128,20 +128,38 @@ const TopHeader = styled.header`
     text-decoration: underline;
   }
 
+  .brand{
+    @media(max-width: 320px){
+      font-size: 1.2rem;
+    }
+    
+  }
+
   .cart{
+    display: flex;
+    align-items: center;
     position: relative;
+
     span{
         position: absolute;
-        top: 3.7px;
-        left: 45%;
+        top: 4.8px;
+        left: 52%;
         color: white;
+        font-size: 0.6rem;
+
+        @media(max-width: 320px){
+          top: 2px;
+          font-size: 0.5rem;
+          left: 45%;
+        }
     }
   }
 
-  .user-img{
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
+  .email-logout.flex-full{
+    gap: 25px;
+    @media(max-width: 320px){
+      gap: 5px;
+    }
   }
   
   @media(max-width: 470px){
@@ -149,25 +167,18 @@ const TopHeader = styled.header`
       padding-left : 0.5rem;
       padding-right : 0.5rem; 
     }
-    .brand{
-      font-size: 16px;
-    }
+
     .user-name , .log-out{
       font-size: 0.6rem;
     }
-    .user-img{
-      width: 13px;
-      height: 13px;
-    }
+
   }
 
   @media(max-width: 320px){
     .user-name , .log-out{
       font-size: 0.5rem;
     }
-    .user-img{
-      display: none;
-    }
+
   }
   
 `
@@ -179,4 +190,19 @@ const MobMode = styled.div`
     display: flex;
   }
 `
+const ShoppingCartIcon = styled(FaShoppingCart)`
+  
+  width: 30px ;
+  height: 30px;
+  
+  @media(max-width: 768px){
+    width: 25px ;
+    height: 25px;
+  }
+  @media(max-width: 320px){
+    width: 15px ;
+    height: 15px;
+  }
+`
+
 export default Header;
