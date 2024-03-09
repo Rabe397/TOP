@@ -38,7 +38,7 @@ const Login = () => {
         }));
         setTimeout(()=>{
           navigate("/");
-        },1500)
+        },500)
       }
     }catch(error){
       toast.error("Invalid Email or Password");

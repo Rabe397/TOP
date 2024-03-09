@@ -1,17 +1,30 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import ProductBox from './ProductBox';
 import laptops from '../api/productApi';
 
 const Product = () => {
-  
+  const [data , setData] = useState([]);
+
+  // pagination
+  const items = 8;
+  let [current , setCurrent] = useState(1);
+  let pageNumber = Math.ceil(data.length / items);
+  let startIndex = (current - 1) + items;
+  let endIndex = startIndex + items;
+  let dataPerPage = data.slice(startIndex, endIndex);
+
+  useEffect(()=>{
+    setData(laptops);
+  })
+
   return (
     <ProductSection className='main-padd'>
         <h3> Shopping everyday </h3>
         <span></span>
         <ProductsContainer className=''>
             {
-              laptops?.map((product)=> (
+              dataPerPage?.map((product)=> (
                 
                 (<ProductBox  product={product}/>)
                 
@@ -19,7 +32,14 @@ const Product = () => {
                              
               )
             }
-        </ProductsContainer> 
+        </ProductsContainer>
+        <div className='pags'>
+          {
+            Array.from({length: pageNumber} , (_,i) => i + 1).map( page => {
+              return <button onClick={()=> setCurrent(page)}> {page} </button>
+            })
+          }
+        </div> 
     </ProductSection>
   )
 }
@@ -43,6 +63,20 @@ const ProductSection = styled.section`
     color: black;
     width: 50px;
     height: 5px;
+  }
+
+  .pags{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    margin-top: 25px;
+
+    button{
+      padding: 5px;
+      background-color: blue;
+      color: white;
+    }
   }
 `
 const ProductsContainer = styled.div`

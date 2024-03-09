@@ -28,7 +28,7 @@ const Header = ()=>{
     return(
         <TopHeader className='main-padd '>
           <div className="container flex-full">
-            <Link to='/' style={{"display" : "block"}}> 
+            <Link to='/' className='brand-a' style={{"display" : "block"}}> 
               <h2 className='brand'> TOP </h2>
             </Link>
             <nav className={mob ? "nav-mob flex-full" : "nav flex-full"}>
@@ -104,15 +104,18 @@ const TopHeader = styled.header`
       
     @media(max-width: 768px){
       position: fixed;
-      top: 50px;
+      top: 44px;
       right: 2rem;
       width: 200px;
       flex-direction: column;
       gap: 15px;
-      background-color: rgb(0 , 80 , 80);
+      background-color: rgb(0,0,100);
       color: white;
       z-index: 100;
       padding: 15px 0;
+    }
+    @media(max-width: 320px){
+      top: 37px;
     }
     @media(max-width: 260px){
       right: 0;
@@ -124,10 +127,13 @@ const TopHeader = styled.header`
   
 
   a:hover{
-    color: orange;
+    color: blue;
     text-decoration: underline;
   }
-
+  a.brand-a:hover{
+    color: initial;
+    text-decoration: none;
+  }
   .brand{
     @media(max-width: 320px){
       font-size: 1.2rem;

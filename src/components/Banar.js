@@ -68,7 +68,46 @@ const Container = styled.div`
           color: white;
           margin-left: 5px;
         }
+
+        @media(max-width: 425px){
+          h2{
+            font-size: 1.5rem;
+          }
+          .btn{
+            padding: 5px;
+            border-radius: 3px;
+            font-size: 0.9rem;
+          }
+        }
+  
+        @media(max-width: 320px){
+          .btn{
+            padding: 4px;
+            border-radius: 2px;
+            font-size: 0.5rem;
+          }
+        }
       }
+
+      @media(max-width: 425px){
+        .btn{
+          padding: 5px;
+          border-radius: 3px;
+          font-size: 0.9rem;
+        }
+      }
+
+      @media(max-width: 320px){
+        h2{
+          font-size: 1.2rem;
+        }
+        .btn{
+          padding: 4px;
+          border-radius: 2px;
+          font-size: 0.5rem;
+        }
+      }
+      
     }
   }
 
